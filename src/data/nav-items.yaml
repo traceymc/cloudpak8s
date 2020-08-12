@@ -106,6 +106,8 @@
       path: /mcm/cp4mcm_cam_install/
     - title: "CloudForms - Installation Guide"
       path: /mcm/cp4mcm_cloudforms/
+    - title: "CloudForms - Policies"
+      path: /mcm/cp4mcm_cloudforms_policies/
     - title: "Troubleshooting"
       path: /mcm/cp4mcm_troubleshooting/
     - title: "Edge Computing Manager - Installation Guide"
@@ -167,7 +169,7 @@
     - title: Alerting and Event Management
       path: /day2/EventManagement/
 #    - title: Alerting - Alert Manager to SNMP
-#      path: /day2/Sup_Snmp/     
+#      path: /day2/Sup_Snmp/
     - title: Backups
       path: /day2/Backups/
     - title: Build and Deployment
@@ -181,9 +183,9 @@
     - title: Logging
       path: /day2/Logging/
 #   - title: Logging - Log on IBM Cloud
-#      path: /day2/Sup_Log/     
+#      path: /day2/Sup_Log/
 #    - title: Logging - EFK on AWS
-#      path: /day2/Sup_EfkAws/ 
+#      path: /day2/Sup_EfkAws/
     - title: Monitoring and Performance
       path: /day2/Monitoring/
     - title: User Management
