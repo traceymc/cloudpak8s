@@ -22,7 +22,7 @@ module.exports = {
       options: {
         trackingId: "UA-149377589-5",
         head: true
-      }
+      },
     },
     {
       resolve: 'gatsby-theme-carbon',
