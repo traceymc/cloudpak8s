@@ -74,6 +74,27 @@ A later version of 4.4.x seems to work; in fact, Specifying Custom Resource usin
 
 If you install on OCP 4.3 or 4.4.5 (or earlier), you need to specify `the Custom Resource (CR)` using the YAML.  On OCP 4.4.6 or above, you have the option to specify the CR using a form.  In this playbook, we will describe the custom resource using YAML.
 
+### Ensuring your ingress controller allows traffic.
+
+The Red Hat OpenShift ingress controller's `endpointPublishingStrategy` is used to publish the Ingress controller endpoints to other networks.  Depending on your OpenShift cluster host, the value of the endpointPublishingStrategy will be different, and this value can not be updated. Please see the [OpenShift 4.4 documentation](https://docs.openshift.com/container-platform/4.4/networking/ingress-operator.html) for more information.
+
+If your host infrastructure is vCentre, then the endpointPublishingStrategy is `HostNetwork`.
+You can check the value by executing the following command:
+
+```
+oc get ingress controller default -n openshift-ingress-operator -o YAML
+```
+
+With endpointPublishingStrategy set to HostNetwork, to make the network policy route to work, you need to assign a selector label to the default namespace.
+
+You can do this by executing the following command.
+
+```
+oc patch namespace default --type=json -p '[{"op":"add","path":"/metadata/labels","value":{"network.openshift.io/policy-group":"ingress"}}]'
+```
+Suppose you do not do the above step. In that case, the network policy may block your network traffic. You may see messages such as the `503 Application Not Available` error when you access your Netcool operation insight services after the installation is completed.
+
+
 ### Sizing
 The online documentation (links provided below)
 provides sizing guidelines.  Separate sizing 
@@ -98,8 +119,6 @@ Information on sizing can be found at the following sites:
 If you are installing into OCP, then **Rook/Ceph** or 
 **Openshift Container Storage (OCS)**, with **RADOS Block Device (RBD)** storage class, is the default supported OCP Storage solution.  We recommend Rook/Ceph 
 as the dynamic storage solution for Netcool Ops Manager.
-
-**Image Registry Storage**: As you are preparing the OCP cluster, If you are going to install through CLI, please allow at least 150GB of image-registry storage for the Netcool Ops Manager. This capacity is in addition to your image-registry requirements for your other OCP's purpose. 
 
 **Persistent Volume Claim**: If you are deploying the Openshift Container Storage (OCS), then OCS 
 creates a default 2 TB Rook/Ceph/RDB block storage.  For an initial production installation of Netcool Ops Manager, you need about 800 GB of storage (PVC) space and image-registry storage.  Please take note of the storage class name. You need this later during the installation.
@@ -141,11 +160,21 @@ get the information before you start the helm chart configuration:
 - Your Base Distinguished name.
 - Your LDAP URL.
 - Your LDAP Bind User Name and Password.
+
+<!---
 - The filter to get the user information (User Filter and User ID map).
 - The filter to get the group information (Group Filter and Group ID map).
 - The filter to map a user to a group (Group member ID map).
+-->
 
-One of the pods deployed by the NOI Helm Chart is an OpenLDAP pod. You can choose to set up the OpenLDAP as a standalone repository or as a proxy to an external LDAP server.  If you choose to use the OpenLDAP pod as a proxy, then Netcool Ops Manager expects the external LDAP server to support the hierarchical LDAP structure.  In particular, the NOI LDAP configuration wants to use ou (Organizational Unit).  
+One of the pods deployed by the NOI Helm Chart is an OpenLDAP pod. You can choose to set up the OpenLDAP as a standalone repository or as a proxy to an external LDAP server.  
+
+<InlineNotification>
+
+If you choose to use the OpenLDAP pod as a proxy, then Netcool Ops Manager expects the external LDAP server to support the hierarchical LDAP structure.  In particular, the NOI LDAP configuration wants to use ou (Organizational Unit).
+
+</InlineNotification>
+
 More information on the NOI Proxy LDAP requirement can be found in the 
 [IBM Knowledge Center](https://www.ibm.com/support/knowledgecenter/SSTPTP_1.6.0/com.ibm.netcool_ops.doc/soc/admin/reference/managing_users_using_an_external_ldap_server.html).
 
@@ -263,7 +292,10 @@ oc create secret generic noicr-impact-secret --from-literal=IMPACT_ADMIN_PASSWOR
 
 - Go to the Main Menu, and select `Operators > OperatorHub`.
 - In the search text box, enter Netcool, and the NOI Operator should be listed, click on it and select `Install.`
-- Select the namespace that you have created earlier, do **not** specify the Approval Strategy > Manual, and select `Install.`
+- Select the namespace that you have created earlier, do **not** specify the Approval Strategy > Manual, and select `subscribe`.
+<!---
+![NOI 1.6.1 operator subscribe](./images/operator_subscribe.png "NOI 1.6.1 operator subscribe")
+-->
 - From the main menu, select `Operators > Installed Operators`, wait until the status says `Succeeded`.
 - You can use your workstation, perform an `oc login`, ensure that you are in the correct namespace perform the `oc project noi161ns` otherwise, do the `oc get pods` and you should see the noi-operator pods is running.
 
@@ -407,6 +439,11 @@ spec:
     storageSizeFileObserver: 5Gi
   version: 1.6.1
 ```
+
+If you are installing on an Open Shift version 4.4.6 or later, you might specify the YAML content through a form that will look like the following:
+
+![NOI 1.6.1 operator form](./images/operator_form.png "NOI 1.6.1 operator form")
+
 
 Once you are ready to initialize, select the **Create** button.
 
