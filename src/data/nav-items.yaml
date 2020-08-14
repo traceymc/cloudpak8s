@@ -54,8 +54,8 @@
   pages:
     - title: Introduction
       path: /data/introduction/
-    - title: Prerequisites
-      path: /data/prereq/
+    - title: Requirements
+      path: /data/requirements/
     - title: Installation
       path: /data/installation/
 - title: Cloud Pak for Integration
