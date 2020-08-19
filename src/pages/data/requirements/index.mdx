@@ -1,0 +1,86 @@
+---
+title:  Requirements
+weight: 100
+---
+*This section covers hardware and software requirements for an IBM
+Cloud Pak for Data 3.0.1 installation.*
+
+IBM Cloud Pak for Data 3.0.1 requires Red Hat OpenShift Container 
+Platform (OCP) 3.11 or 4.x to be installed as prerequisites. The installation of OpenShift Container 
+Platform is covered in [this section](/ocp/introduction) of the Playbook.
+
+### Minimum Hardware Requirements
+
+The following minimum recommendations are for demos and proof-of-concept with Cloud Pak for Data.
+The time on all of the nodes must be synchronized within 500ms.
+
+*Minimum requirements for Red Hat® OpenShift Container Platform Version 3.11.188 or later fixes*:
+
+| Node role         | Hardware | Number of nodes           | CPU      | RAM   | Root disk |
+| :---------------- | :------- | :------------------------ | :------  | :---- | :-------- |
+| Master + infra    | x86-64   | 1                         | 8 cores  | 32 GB | 120 GB    |
+| Worker/compute    | x86-64   | 2 (for NFS) or 3 (for PX) | 16 cores | 64 GB | 120 GB    |
+
+*Minimum requirements for Red Hat OpenShift Container Platform Version 4.3.18 or later fixes*:
+
+| Node role         | Hardware          | Number of nodes   | CPU      | RAM   | Root disk |
+| :---------------- | :---------------- | :---------------- | :------  | :---- | :-------- |
+| Master + infra    | x86-64, ppc64le   | 3 (for HA)        | 4 cores  | 16 GB | 120 GB    |
+| Worker/compute    | x86-64, ppc64le   | 3                 | 16 cores | 64 GB | 120 GB    |
+
+Additional cores and nodes should be added depending on the services you need (see [System requirements for services](https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_current/sys-reqs/services_prereqs.html) for details).
+
+### Production level hardware requirements
+
+The following minimum recommendations are for small production usage (or proof-of-concept for larger workloads) with Cloud Pak for Data. High availability is always recommended.
+The time on all of the nodes must be synchronized within 500ms.
+
+| Node role         | Hardware          | Number of nodes   | CPU      | RAM   			    | Root disk   |
+| :---------------- | :---------------- | :---------------- | :------  | :------------------------- | :---------- |
+| Master + infra    | x86-64, ppc64le   | 3 (for HA)        | 8 cores  | 32 GB 			    | 120 GB      |
+| Worker/compute    | x86-64, ppc64le   | 3+                | 16 cores | 64 GB (128 GB recommended) | 120 GB      |
+| Load balancer     | x86-64, ppc64le   | 1                 | 8 cores  | 8 GB 			    | 200 GB      |
+
+### Storage requirements
+
+An additional 200 GB of free space in the root file system on all of the nodes. See [Storage considerations](https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_current/cpd/plan/storage_considerations.html) for the supported storage types and requirements.
+
+Cloud Pak for Data with all services installed can use up to 700 GB of storage space, leaving up to 300 GB of storage space available for user data. You can add additional capacity depending on your user data volume requirements.
+
+### Software requirements
+
+- A Red Hat Enterprise Linux cluster with Red Hat OpenShift installed on it, either:
+
+  - Red Hat OpenShift Container Platform Version 3.11.188 or later fixes for on-premises.
+  - Red Hat OpenShift Container Platform Version 4.3.18 or later fixes for on-premises.
+  - IBM Cloud, Microsoft Azure, Amazon Web Services, or Google Cloud Platform.
+
+**Important**: Cloud Pak for Data includes entitlement to both the Red Hat OpenShift Container Platform and Red Hat Enterprise Linux. You can download Red Hat OpenShift either from [IBM Passport Advantage®](https://www.ibm.com/software/passportadvantage/pao_customer.html) or directly from the [Red Hat Customer Portal](https://access.redhat.com/).
+
+- The OpenShift cluster should include:
+
+| Container Runtime               | OpenShift Version | Storage Type                          | Storage Requirement |
+| :------------------------------ | :---------------- | :------------------------------------ | :-----------------  |
+| CRI-O version 1.13 or later     | 4.x, 3.11         | NFS, IBM Cloud FS, Portworx, OCS      | 200 GB              |
+| Docker with the overlay2 driver | 3.11              | NFS                                   | 200 GB              |
+
+**Attention**: For the overlay2 driver, you must enable `d_type=true` and `ftype=1` or else the installation will fail. See Use the [OverlayFS storage driver](https://docs.docker.com/storage/storagedriver/overlayfs-driver/) for details. After you install OpenShift, enter docker info and verify that `Storage Driver: overlay2` and Supports `d_type: true`.
+
+- A registry to store images on, with a minimum of 300 GB of storage space. The registry must be accessible from all of the nodes in the cluster. Additionally, all of the nodes must have permission to push to and pull from the registry. See [Setting up your registry server](https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_current/cpd/install/registry_server.html) for details.
+
+- A Linux or Mac OS client workstation to perform the installation from. The workstation does not have to be part of the OpenShift cluster, but must be able to `oc login` to the cluster. 
+
+### Security requirements
+
+You must have a cluster-admin account to set up the environment for Cloud Pak for Data. The cluster-admin user must grant the cpd-admin-role to the project administration user that will install Cloud Pak for Data in the corresponding OpenShift project.
+
+### Supported web browsers
+
+- Mozilla Firefox (recommended) - Version 54 and higher
+- Google Chrome - Version 60 and higher
+
+### Other Resources
+
+Complete information about planning for Cloud Pak for Data can be found at this
+[IBM Knowledge Center](https://www.ibm.com/support/knowledgecenter/en/SSQNUZ_3.0.1/cpd/plan/planning.html)
+page.

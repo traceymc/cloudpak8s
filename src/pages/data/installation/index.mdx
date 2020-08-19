@@ -1,0 +1,32 @@
+---
+title:  Installing Cloud Pak for Data
+weight: 100
+---
+In this section we describe the installation of IBM Cloud Pak 
+for Data. This document was written based on our experience
+with installation on 
+Red Hat OpenShift 4.2 running on x86 architecture. However, 
+the purpose of this 
+document is to be agnostic. In other words, Cloud Pak for Data (CP4D) 
+just requires OpenShift 3.11 or 4.x to be installed as a base platform. 
+It does not matter if it is on-premises, in the cloud, installed on bare-metal, or on virtual machines.
+
+**Important**: At the time of writing OpenShift 4.3 is the highest supported version for CP4D. OpenShift 4.2 seems to be the most stable.
+
+### Obtain the Installation Files
+
+IBM® Cloud Pak for Data Version 3.0.1 consists of the following options:
+- On the Linux or Mac OS workstation, download the appropriate file from [cpd-cli GitHub](https://github.com/IBM/cpd-cli/releases):
+
+| Edition     | TAR File                     | Version | Size   |
+| :---------- | :----------------------------| :-------| :----- |
+| Enterprise  | cloudpak4data-ee-3.0.1.tgz   | 3.0.1   | 122 MB |
+| Standard    | cloudpak4data-ste-3.0.1.tgz  | 3.0.1   | 122 MB |
+| System      | cloudpak4data-se-3.0.1.tgz   | 3.0.1   | 122 MB |
+
+
+The quick install guide can be found [here](https://github.ibm.com/adam-burrows/Community-Guides/blob/master/CP4D_301.md).
+
+For help on an airgapped environment read [here](https://github.ibm.com/adam-burrows/Community-Guides/blob/master/Airgap_Commands.md).
+
+MUCH MORE TO COME....

@@ -50,6 +50,14 @@
       path: /automation/install-odm/
 #    - title: Automation Digital Worker
 #      path: /automation/install-adw/
+- title: Cloud Pak for Data
+  pages:
+    - title: Introduction
+      path: /data/introduction/
+    - title: Requirements
+      path: /data/requirements/
+    - title: Installation
+      path: /data/installation/
 - title: Cloud Pak for Integration
   pages:
     - title: Introduction
