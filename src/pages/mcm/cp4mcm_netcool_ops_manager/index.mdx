@@ -447,7 +447,15 @@ If you are installing on an Open Shift version 4.4.6 or later, you might specify
 
 Once you are ready to initialize, select the **Create** button.
 
-The Operator starts by running the pod `noicr-verifysecrets-*`  you can check using the `oc get pods` commands.  If the `verifysecrets` do not complete, then you have some authorization configuration errors, otherwise, the Operator starts deploying the pods in stages.
+The Operator starts by running the pod `noicr-verifysecrets-*`  you can check using the `oc get pods` commands.  If the `verifysecrets` do not complete, then you have some authorization configuration errors; otherwise, the Operator starts deploying the pods in stages.  
+
+As the pods are started, the container images will be downloaded directly from the IBM Cloud Container Registry.  
+
+<InlineNotification>
+
+You should watch for any pods that failed to load and perform an `oc describe pods *failed_to_load pods* `.  At the pods' initial loading, a common issue is that the cluster is running out CPU or Memory resources.
+
+</InlineNotification>
 
 If everything is running successfully you should be able to see the list of pods similar to the following:
 
