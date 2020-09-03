@@ -30,6 +30,9 @@ oc adm policy add-scc-to-group ibm-anyuid-scc system:serviceaccounts:mq
 oc adm policy add-scc-to-group anyuid system:serviceaccounts:mq
 ```
 
+<ul>
+</ul>
+
 ### **Create MQ instance in Cloud Pak for Integration**
 
 1. Create an instance of MQ queue manager by clicking on “Add new instance” in the MQ tile in Platform Navigator.
@@ -104,10 +107,16 @@ At the bottom of the MQ Chart you will find the
 name of the tracing namespace, which in this sample is `tracing`
 23. Scroll to the bottom and then click install.
 
+<ul>
+</ul>
+
 ### **Monitoring the Deployment**
 1. Once all the pods are up, it will resemble the following.  Use the
 `oc get pods` command to view the pods in flight
 ![](/assets/img/integration/deploy-queue-manager/12.mqpods.png)
+
+<ul>
+</ul>
 
 ### **Register with Tracing Service**
 1. Near the end of the install of MQ, a job will be created that has the

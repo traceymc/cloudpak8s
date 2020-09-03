@@ -17,8 +17,13 @@ weight: 250
 
 ### **OpenShift 4 Network Requirements**
 
-1. DHCP - required for VMs to obtain itinital ignition config from bootstrap host
-2. DNS - The following DNS entries are required to be in place prior to deployment
+#### DHCP 
+
+Required for VMs to obtain initial ignition config from bootstrap host
+
+#### DNS 
+
+The following DNS entries are required to be in place prior to deployment:
 
 | Component      | Record                                              | Description                                                  |
 | -------------- | --------------------------------------------------- | ------------------------------------------------------------ |
@@ -31,7 +36,8 @@ weight: 250
 |                |                                                     | \_etcd-server-ssl._tcp.&lt;cluster_name&gt;.&lt;base_domain&gt;  86400 IN    SRV 0        10     2380 etcd-1.&lt;cluster_name&gt;.&lt;base_domain&gt;. |
 |                |                                                     | \_etcd-server-ssl._tcp.&lt;cluster_name&gt;.&lt;base_domain&gt;  86400 IN    SRV 0        10     2380 etcd-2.&lt;cluster_name&gt;.&lt;base_domain&gt;. |
 
-3. Firewall (From all machines to all machines)
+#### Firewall (From all machines to all machines)
+ 
 
 | **Protocol** | Port          | Description                                                  |
 | ------------ | ------------- | ------------------------------------------------------------ |
@@ -45,7 +51,8 @@ weight: 250
 | UDP          | `9000-9999`   | Host level services, including the node exporter on ports `9100`-`9101`. |
 | UDP          | `30000-32767` | Kubernetes NodePort                                          |
 
-4. Firewall (LoadBalancer)
+#### Firewall (LoadBalancer)
+ 
 
 | Port | Machines | Internal | External | Description |
 | ---- | -------- | -------- | -------- | -------- |
