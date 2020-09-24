@@ -228,6 +228,10 @@
   pages:
     - title: Common Services - Install
       path: /common_services/cs_install/
+- title: Watson AIOps
+  pages:
+    - title: AI Manager - Installation
+      path: /aiops/aimgr/install/
 - title: Contribute
   pages:
     - title: Contribute to the Cloud Pak Playbook
