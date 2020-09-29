@@ -90,40 +90,30 @@
       path: /integration/cp4i-scenario-2020.1.x/
 - title: Cloud Pak for Multicloud Management
   pages:
-    - title: Introduction
-      path: /mcm/cp4mcm_introduction/
+    - title: Introduction 
+      path: /mcm/introduction/
     - title: Requirements
-      path: /mcm/cp4mcm_requirements/
-    - title: "MCM - Installation Guide"
-      path: /mcm/cp4mcm_mcm_install/
-    - title: MCM - Importing a Kubernetes Cluster
-      path: /mcm/cp4mcm_cluster_onboarding/
-    - title: MCM - Concepts
-      path: /mcm/cp4mcm_mcm_concepts/
-    - title: MCM - Sample Bookinfo
-      path: /mcm/cp4mcm_mcm_bookinfo/
-    - title: MCM - Governance and Risk
-      path: /mcm/cp4mcm_governance_risk/
-    - title: "ICAM - Installation Guide"
-      path: /mcm/cp4mcm_icam_install/
-    - title: "ICAM - Post Install Setup"
-      path: /mcm/cp4mcm_icam_post_server_install/
-    - title: "ICAM - Monitoring Bookinfo"
-      path: /mcm/cp4mcm_monitoring_bookinfo/
-    - title: "CAM - Installation Guide"
-      path: /mcm/cp4mcm_cam_install/
-    - title: "CloudForms - Installation Guide"
-      path: /mcm/cp4mcm_cloudforms/
-    - title: "CloudForms - Policies"
-      path: /mcm/cp4mcm_cloudforms_policies/
-    - title: "Troubleshooting"
-      path: /mcm/cp4mcm_troubleshooting/
+      path: /mcm/requirements/
+    - title: Installation
+      path: /mcm/installation/
+    - title: Enabling Monitoring
+      path: /mcm/monitoring/
+    - title: MCM Concepts
+      path: /mcm/concepts/
+    - title: Managed Cluster Importing
+      path: /mcm/cluster_onboarding/
+    - title: Bookinfo - Sample Application
+      path: /mcm/bookinfo/
+    - title: Bookinfo - Monitoring Sample Application
+      path: /mcm/bookinfo_monitoring/
     - title: "Edge Computing Manager - Installation Guide"
       path: /mcm/edge/
     - title: "Netcool Ops Manager (NOM) - Installation Guide"
       path: /mcm/cp4mcm_netcool_ops_manager/
     - title: "NOM - Day2"
       path: /mcm/cp4mcm_nom_day2/
+    - title: MCM 1.3 Information 
+      path: /mcm/mcm13/
 - title: Cloud Pak for Security
   pages:
     - title:  Introduction
