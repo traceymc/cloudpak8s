@@ -222,6 +222,8 @@
   pages:
     - title: AI Manager - Installation
       path: /aiops/aimgr/install/
+    - title: AI Manager - Slack
+      path: /aiops/aimgr/slack/
 - title: Contribute
   pages:
     - title: Contribute to the Cloud Pak Playbook
